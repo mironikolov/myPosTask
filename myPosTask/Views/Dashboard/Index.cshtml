@@ -1,0 +1,45 @@
+﻿@model myPosTask.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Credits: @Model.UserTransaction.CurrentUser.Credits</h2>
+<button class="btn btn-primary" data-toggle="modal" data-target="#giftForm">Make Gift</button>
+
+<div class="modal fade" id="giftForm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Make gift</h3>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("MakeGift", "Dashboard"))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SendGift.PhoneNumber)
+                        @Html.TextBoxFor(m => m.SendGift.PhoneNumber, new { @class = "form-contorl"})
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SendGift.Credits)
+                        @Html.TextBoxFor(m => m.SendGift.Credits, new { @class = "form-contorl" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SendGift.Message)
+                        @Html.TextAreaFor(m => m.SendGift.Message, new { @class = "form-contorl" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send credits</button>
+                    <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Transactions</h3>

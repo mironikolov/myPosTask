@@ -19,5 +19,7 @@ namespace myPosTask.Models
         [StringLength(200, ErrorMessage = "The message is too long")]
         public string Message { get; set; }
 
+        [Required]
+        public int Amount { get; set; }
     }
 }
